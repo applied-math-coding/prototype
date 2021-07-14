@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc --project ./",
+    "build": "rm -rf dist && tsc --project ./",
     "start:prod": "node ./dist/index.js",
     "build_and_start": "npm run build && npm run start:prod",
     "start": "nodemon --watch . -e ts --ignore ./client/ --ignore ./dist/ --exec npm run build_and_start",

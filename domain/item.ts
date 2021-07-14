@@ -1,8 +1,10 @@
 export class Item{
+  id?: number;
   name: string;
   available: boolean;
 
-  constructor({name, available}: Item){
+  constructor({id, name, available}: Item){
+    this.id = id;
     this.name = name;
     this.available = available;
   }

@@ -6,11 +6,12 @@ export class ItemService {
 
   async findItem(id: number): Promise<Item> {
     //TODO
-    return new Item({ name: '', available: true });
+    return new Item({ id, name: '', available: true });
   }
 
-  async deleteItem(id: number) {
+  async deleteItem(id: number): Promise<number> {
     //TODO
+    return id;
   }
 
   async findAllItems(): Promise<Item[]> {
@@ -26,6 +27,6 @@ export class ItemService {
   async createItem(it: Item): Promise<Item> {
     console.log(it)
     //TODO
-    return it;
+    return { ...it, id: 1 };
   }
 }
