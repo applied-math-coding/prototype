@@ -21,22 +21,17 @@ export class ItemService {
   }
 
   async findAllItems(): Promise<Item[]> {
-    return this.db.many<Item>('SELECT * FROM items');
+    return this.db.manyOrNone<Item>('SELECT * FROM items');
   }
 
-  async updateItem(it: Item): Promise<Item> {
-    debugger //TODO
-    if (it.id == null) {
-      throw new Error('item is missing an id field');
-    }
+  async updateItem(id: number, it: Item): Promise<Item> {
+    const condition = pgPromise().as.format(' WHERE id = ${id}', { id });
     const sql: string = pgPromise().helpers.update(it, null, 'items');
-    await this.db.none(sql);
-    return this.findItem(it.id);
+    return this.db.one(`${sql} ${condition} RETURNING *`);
   }
 
   async createItem(it: Item): Promise<Item> {
-    console.log(it)
-    //TODO
-    return { ...it, id: 1 };
+    const sql: string = pgPromise().helpers.insert(it, null, 'items');
+    return this.db.one(`${sql} RETURNING *`);
   }
 }

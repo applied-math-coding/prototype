@@ -14,7 +14,10 @@ itemsRouter.get('/:itemId', async (req, res) =>
 
 itemsRouter.post('/', async (req, res) => res.json(await itemService.createItem(req.body)));
 
-itemsRouter.put('/', async (req, res) => res.json(await itemService.updateItem(req.body)));
+itemsRouter.put('/', async (req, res) => {
+  const { id, ...item } = req.body; // ensure the item is dropped before giving to db
+  res.json(await itemService.updateItem(id, item));
+});
 
 itemsRouter.delete('/:itemId', async (req, res) => {
   await itemService.deleteItem(+req.params.itemId);
