@@ -4,7 +4,7 @@ import { itemService } from '../services';
 
 const itemsRouter = express.Router();
 
-itemsRouter.get('/:itemId', async (req, res) =>
+itemsRouter.get(['/:itemId', '/'], async (req, res) =>
   res.json(
     await (req.params.itemId != null ?
       itemService.findItem(+req.params.itemId) :
