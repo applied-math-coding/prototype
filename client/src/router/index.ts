@@ -15,7 +15,20 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/items',
     name: 'Items',
-    component: () => import('../views/Items.vue')
+    component: () => import('../views/Items.vue'),
+    children: [
+      {
+        path: '',
+        name: 'itemList',
+        component: () => import('../components/ItemList.vue')
+      },
+      {
+        path: 'edit/:id',
+        name: 'itemEditor',
+        props: true,
+        component: () => import('../components/ItemEditor.vue')
+      }
+    ]
   }
 ]
 

@@ -3,6 +3,11 @@ import { Item } from '@/domain/item';
 export class ItemService {
   readonly BASE_URL = '/api/items';
 
+  async getItem(id: number): Promise<Item> {
+    return fetch(`${this.BASE_URL}/${encodeURIComponent(id)}`)
+      .then(r => r.json());
+  }
+
   async getItems(): Promise<Item[]> {
     return fetch(`${this.BASE_URL}`).then(r => r.json());
   }
@@ -25,7 +30,7 @@ export class ItemService {
 
   async updateItem(item: Item): Promise<Item> {
     return fetch(`${this.BASE_URL}`, {
-      method: 'POST',
+      method: 'PUT',
       body: JSON.stringify(item),
       headers: {
         'Content-Type': 'application/json'
