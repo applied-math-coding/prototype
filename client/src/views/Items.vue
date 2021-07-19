@@ -3,7 +3,7 @@
     <div class="header-actions">
       <div class="use-graphql">
         <div class="mr-2">Use GraphQL:</div>
-        <InputSwitch v-model="useGraphQL" />
+        <InputSwitch v-model="itemServiceState.useGraphQL" />
       </div>
     </div>
     <router-view></router-view>
@@ -13,12 +13,13 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import InputSwitch from "primevue/inputswitch";
+import { itemService } from "../services";
 
 export default defineComponent({
   name: "Items",
   data() {
     return {
-      useGraphQL: false,
+      itemServiceState: itemService.state,
     };
   },
   components: {

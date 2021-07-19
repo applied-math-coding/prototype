@@ -1,5 +1,5 @@
-import { ItemGraphqlService } from './item-graphql.service';
+import { GraphqlService } from './graphql.service';
 import { ItemService } from './item.service';
 
 export const itemService = new ItemService();
-export const itemGraphqlService = new ItemGraphqlService();
+export const graphqlService = new GraphqlService();
